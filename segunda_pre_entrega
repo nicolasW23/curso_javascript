@@ -1,0 +1,171 @@
+let bandas=[
+{
+    id: 1,
+    nombre: "Soda Stereo",
+    genero: "rock",
+    disco:"grandes exitos",
+    cantidad:14,
+    precio: 2000,
+},
+{
+    id: 2,
+    nombre: "Duran Duran",
+    genero: "rock",
+    disco:"Ordinary World",
+    cantidad:24,
+    precio: 1600,
+},
+{
+    id: 3,
+    nombre: "Daft Punk",
+    genero: "disco",
+    disco:"Random Access Memory",
+    cantidad:4,
+    precio: 3000,
+},
+{
+    id: 4,
+    nombre: "GunsN Roses",
+    genero: "rock",
+    disco:"Use Your Illusion",
+    cantidad:12,
+    precio: 3500,
+},
+{
+    id: 5,
+    nombre: "Pink Floyd",
+    genero: "rock pshicodelico",
+    disco:"Recompilacion",
+    cantidad:11,
+    precio: 5000,
+},
+{
+    id: 6,
+    nombre: "Queen",
+    genero: "rock",
+    disco:"Clasicos",
+    cantidad:2,
+    precio: 5100,
+},
+{
+    id: 7,
+    nombre: "Tears For Fears",
+    genero: "pop",
+    disco:"disco 1984",
+    cantidad:1,
+    precio: 3000,
+},
+{
+    id: 8,
+    nombre: "Virus",
+    genero: "rock",
+    disco:"virus",
+    cantidad:9,
+    precio: 2500,
+},
+{
+    id: 9,
+    nombre: "Depeche Mode",
+    genero: "pop",
+    disco:"Violation",
+    cantidad:9,
+    precio: 2500,
+},
+{
+    id: 10,
+    nombre: "Elo",
+    genero: "pop",
+    disco:"disco 1982",
+    cantidad:15,
+    precio: 3400,
+},
+{
+    id: 11,
+    nombre: "The Doors",
+    genero: "rock pshicodelico",
+    disco:"The Doors",
+    cantidad:0,
+    precio: 3300,
+},
+{
+    id: 12,
+    nombre: "Michael Jackson",
+    genero: "pop",
+    disco:"Thiller",
+    cantidad:2,
+    precio: 5000,
+},
+{
+    id: 13,
+    nombre: "simple Minds",
+    genero: "pop",
+    disco:"simple Minds",
+    cantidad:4,
+    precio: 2300,
+},
+{
+    id: 14,
+    nombre: "The Strokes",
+    genero: "rock",
+    disco:"disco 2020",
+    cantidad:7,
+    precio: 3000,
+},
+{
+    id: 15,
+    nombre: "Billy Idol",
+    genero: "pop",
+    disco:"disco 1982",
+    cantidad:6,
+    precio: 2000,
+},
+];
+
+let opcion=0;
+let carrito= [];
+
+opcion = Number(prompt("1-Listar discos\n2-Filtrar por genero musical\n3-Ver carrito\n4-Agregar al carrito por id carrito\n0-Salir"));
+while(opcion != "0") {
+    switch(opcion){
+        case 1:
+            alert("Lista de productos: \n" + listarDiscos(bandas));
+            break;
+        case 2:
+            let genero= prompt("Ingrese un genero para filtrar").toLowerCase();
+            let productosFiltrados= bandas.filter(banda => banda.genero === genero);
+            if(productosFiltrados.length === 0){
+                alert("No existen bandas de ese genero");
+            }
+            else{
+                alert("Lista de bandas del genero: " + genero + ": \n" + listarDiscos(productosFiltrados));
+            }
+            break;
+        case 3:
+            alert("Productos en el carrito: \n" + listarDiscos(carrito));
+            break;
+        case 4:
+            let idDisco= Number(prompt("Seleccione el id del disco a comprar: "));
+            listarDiscos(bandas);
+            let discoBuscado= bandas.find(banda => banda.id === idDisco);
+            if(discoBuscado){
+                carrito.push(discoBuscado);
+                alert("Producto agregado correctamente");
+            }
+            break;
+        default:
+            if(opcion != 0){
+                alert("Por favor ingrese un numero disponible");
+                break;
+            }
+    }
+    opcion = Number(prompt("1-Listar discos\n2-Filtrar por genero musical\n3-Ver carrito\n4-Agregar al carrito por id carrito\n0-Salir"));
+};
+
+function listarDiscos(discos){
+    return discos.map(disco =>{
+        return `\nID: ${disco.id}\nNombre: ${disco.nombre}\nGenero: ${disco.genero}\nDisco: ${disco.disco}\nCantidad: ${disco.cantidad}\nPrecio: ${disco.precio}`;
+    }).join("\n");
+}
+
+
+
